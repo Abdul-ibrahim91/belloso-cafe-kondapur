@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-obsidian font-sans text-amber-50/90 antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-ember/30 text-amber-50;
+  }
+
+  /* Warm ambient light wash, like Edison bulbs in a dark room */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(42rem 28rem at 80% -6%, rgba(245, 158, 11, 0.07), transparent 68%),
+      radial-gradient(34rem 26rem at 4% 38%, rgba(217, 119, 6, 0.045), transparent 68%),
+      radial-gradient(38rem 28rem at 52% 104%, rgba(245, 158, 11, 0.04), transparent 68%);
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply border border-amber-500/20 bg-white/[0.03] backdrop-blur-md;
+  }
+
+  .glass-strong {
+    @apply border border-amber-500/25 bg-roast/70 backdrop-blur-xl;
+  }
+
+  .gold-text {
+    background: linear-gradient(104deg, #fde68a 0%, #f59e0b 42%, #d97706 72%, #fcd34d 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hairline {
+    background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.35), transparent);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
